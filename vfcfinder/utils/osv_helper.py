@@ -123,7 +123,9 @@ def parse_osv(osv_json_filename: str, osv_schema: dict) -> dict:
                     osv_parsed["cwe_ids"] = osv_json[key]["cwe_ids"]
                     osv_parsed["severity"] = osv_json[key]["severity"]
                     # TODO: Handle all CWEs instead of just the first one listed
-                    affected_base["cwe_ids"] = osv_json[key]["cwe_ids"][0]
+                    # affected_base["cwe_ids"] = osv_json[key]["cwe_ids"][0] ORIGINAL CODE
+                    cwes = osv_json[key].get("cwe_ids") or []
+                    affected_base["cwe_ids"] = cwes[0] if cwes else None
                 else:
                     osv_parsed["cwe_ids"] = None
                     osv_parsed["severity"] = None

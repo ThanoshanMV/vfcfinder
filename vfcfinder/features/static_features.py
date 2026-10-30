@@ -29,11 +29,15 @@ def cve_in_commit_message(full_message: str, cve: str) -> float:
 
     Args:
         full_message (str): Full message of the commit
-        cve (str): CVE-ID for a given report
+        cve (str): CVE-ID for a given report, None/empty if the report has none
 
     Returns:
         bool: True/False if CVE is in message
     """
+
+    # no CVE-ID, an empty string would otherwise be "in" every message
+    if not cve:
+        return False
 
     # check if CVE-ID is in the full message
     if cve.lower() in full_message.lower():

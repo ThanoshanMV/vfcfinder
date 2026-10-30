@@ -37,6 +37,20 @@ def main():
         required=False,
     )
 
+    parser.add_argument(
+        "--log_path",
+        type=str,
+        help="Local path to append a run log to (fixed version, ranked commits, errors)",
+        required=False,
+    )
+
+    parser.add_argument(
+        "--fixed_version",
+        type=str,
+        help="Fixed version to process (default: last fixed version in the advisory)",
+        required=False,
+    )
+
     args = parser.parse_args()
 
     if not args.advisory_path and not args.clone_path:
@@ -46,11 +60,14 @@ def main():
         ADVISORY_PATH = args.advisory_path
         CLONE_PATH = args.clone_path
 
-    if args.output_path:
-        vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH, output_path=args.output_path)
-    else:
-        # call the ranker
-        vfc_ranker.rank(advisory_path=ADVISORY_PATH, clone_path=CLONE_PATH)
+    # call the ranker
+    vfc_ranker.rank(
+        advisory_path=ADVISORY_PATH,
+        clone_path=CLONE_PATH,
+        output_path=args.output_path,
+        log_path=args.log_path,
+        fixed_version=args.fixed_version,
+    )
 
 
 if __name__ == '__main__':

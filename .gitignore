@@ -162,3 +162,9 @@ cython_debug/
 
 # Temp clone directory
 .clone_repos
+
+# VFCFinder run outputs (clones, results, logs)
+output/
+
+.DS_Store
+.vscode/

@@ -123,15 +123,18 @@ def get_tags(repo_owner, repo_name, clone_path):
     # create repo path
     repo_path = f"{clone_path}{repo_owner}/{repo_name}/"
 
-    # execute the git tags command
-    git_tags_command = (
-        f"(cd {repo_path} && "
-        f"git for-each-ref --sort=v:refname --format '%(refname) %(creatordate)' refs/tags)"
-    )
-
-    # this is all trusted input....not a vulnerability
+    # execute the git tags command, no shell so paths with spaces work
     git_tags = subprocess.check_output(
-        git_tags_command, shell=True, encoding="UTF-8"
+        [
+            "git",
+            "for-each-ref",
+            "--sort=v:refname",
+            "--format",
+            "%(refname) %(creatordate)",
+            "refs/tags",
+        ],
+        cwd=repo_path,
+        encoding="UTF-8",
     ).splitlines()
 
     # load in the tag outputs

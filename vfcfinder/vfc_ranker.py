@@ -8,13 +8,27 @@ import torch
 import numpy as np
 import xgboost as xgb
 import argparse
+import logging
+import sys
+import time
 
 from pathlib import Path
 from vfcfinder.utils import osv_helper, git_helper
 from vfcfinder.features import vfc_identification, static_features, semantic_similarity
 
+# run log, shown in the terminal and also appended to a file when rank() is given a log_path
+logger = logging.getLogger("vfcfinder")
+logger.propagate = False
 
-def rank(advisory_path: str, clone_path: str, return_results=False, output_path=None):
+
+def rank(
+    advisory_path: str,
+    clone_path: str,
+    return_results=False,
+    output_path=None,
+    log_path=None,
+    fixed_version=None,
+):
     """Ranks commits in relevance to a given security advisory
 
     Args:
@@ -22,7 +36,45 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
         clone_path (str): Local path to clone a repository
         return_restuls (bool): Returns sorted commits in a pd.DataFrame
         output_path (str): Path to save results in a CSV form
+        log_path (str): Path to append a run log to (fixed version, tags,
+            ranked commits, errors). No log file is written when None
+        fixed_version (str): Fixed version to process, for example "1.8.4".
+            Defaults to the last fixed version listed in the advisory
     """
+    formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
+
+    # the same log lines also go to the terminal, in step with the prints
+    handlers = [logging.StreamHandler(sys.stdout)]
+    # the traceback is already shown when the exception is re-raised
+    handlers[0].addFilter(lambda record: record.exc_info is None)
+    if log_path is not None:
+        handlers.append(logging.FileHandler(log_path, mode="a", encoding="utf-8"))
+    for handler in handlers:
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+    logger.setLevel(logging.INFO)
+
+    start = time.time()
+    logger.info("START advisory_path=%s clone_path=%s", advisory_path, clone_path)
+    try:
+        return _rank(
+            advisory_path, clone_path, return_results, output_path, fixed_version
+        )
+    except Exception:
+        logger.exception("FAILED advisory_path=%s", advisory_path)
+        raise
+    finally:
+        logger.info(
+            "END advisory_path=%s elapsed_sec=%.1f", advisory_path, time.time() - start
+        )
+        for handler in handlers:
+            logger.removeHandler(handler)
+            handler.close()
+
+
+def _rank(
+    advisory_path: str, clone_path: str, return_results, output_path, fixed_version
+):
     # SET args
     GHSA_ID = advisory_path
     CLONE_DIRECTORY = clone_path
@@ -53,6 +105,17 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
     repo_owner = repo_url.split("/")[-2]
     repo_name = repo_url.split("/")[-1]
 
+    logger.info(
+        "ADVISORY id=%s aliases=%s package=%s/%s cwe_ids=%s repo=%s/%s",
+        parsed[0]["id"],
+        parsed[0]["aliases"],
+        parsed[0]["ecosystem"],
+        parsed[0]["package_name"],
+        parsed[0]["cwe_ids"],
+        repo_owner,
+        repo_name,
+    )
+
     # set a clone path
     CLONE_PATH = f"{CLONE_DIRECTORY}{repo_owner}/{repo_name}/"
 
@@ -65,7 +128,25 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
 
     #####################################################################################
     # find fixed/vulnerable version
-    fix_tag = parsed[1].fixed.iloc[-1]
+    advisory_fixed = parsed[1].fixed.tolist()
+    if fixed_version is not None:
+        fix_tag = fixed_version
+        fix_source = "caller"
+    else:
+        fix_tag = parsed[1].fixed.iloc[-1]
+        fix_source = "advisory_last"
+
+    logger.info(
+        "FIXED_VERSION processed=%s source=%s all_fixed_in_advisory=%s",
+        fix_tag,
+        fix_source,
+        advisory_fixed,
+    )
+    if fix_tag not in advisory_fixed:
+        logger.warning(
+            "FIXED_VERSION %s is not one of the fixed versions listed in the advisory",
+            fix_tag,
+        )
 
     #####################################################################################
     # load the OWASP Lookup table and map
@@ -108,6 +189,14 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
         prior_tag=repo_vuln_tag,
         current_tag=repo_fix_tag,
         temp_repo_path=CLONE_PATH,
+    )
+
+    logger.info(
+        "TAGS prior_tag=%s fixed_tag=%s candidate_commits=%d device=%s",
+        repo_vuln_tag,
+        repo_fix_tag,
+        len(commits),
+        DEVICE,
     )
 
     #####################################################################################
@@ -249,10 +338,15 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
 
     #####################################################################################
     # cve/ghsa in message
+    # some advisories have no alias, the feature is then False for every commit
+    cve_id = parsed[0]["aliases"][0] if parsed[0]["aliases"] else None
+    if cve_id is None:
+        logger.warning(
+            "CVE_ALIAS none in advisory, cve_in_message=False for all commits"
+        )
+
     commits["cve_in_message"] = commits.apply(
-        lambda x: static_features.cve_in_commit_message(
-            x["full_message"], parsed[0]["aliases"][0]
-        ),
+        lambda x: static_features.cve_in_commit_message(x["full_message"], cve_id),
         axis=1,
     )
 
@@ -316,10 +410,34 @@ def rank(advisory_path: str, clone_path: str, return_results=False, output_path=
             f" Commit Message: {row.message[:40]} || "
             f"VFC Prob: {round(row.vfc_prob, 2)}"
         )
-    
+
+    # log the top ranked commits, the first one is the predicted VFC
+    for idx, row in commits[:5].iterrows():
+        logger.info(
+            "RANK %d sha=%s ranking_prob=%.4f vfc_prob=%.4f semantic_similarity=%.4f "
+            "cve_in_message=%s ghsa_in_message=%s message=%r",
+            idx + 1,
+            row.sha,
+            row.ranking_prob,
+            row.vfc_prob,
+            row.semantic_similarity,
+            row.cve_in_message,
+            row.ghsa_in_message,
+            row.message[:80],
+        )
+    logger.info(
+        "PREDICTED_VFC advisory=%s sha=%s url=https://github.com/%s/%s/commit/%s",
+        parsed[0]["id"],
+        commits.iloc[0].sha,
+        repo_owner,
+        repo_name,
+        commits.iloc[0].sha,
+    )
+
     # save results
     if output_path is not None:
         commits.to_csv(output_path, encoding='utf-8', index=False)
+        logger.info("OUTPUT csv=%s", output_path)
 
     # return results for later use
     if return_results:

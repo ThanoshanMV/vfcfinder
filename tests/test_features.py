@@ -94,6 +94,20 @@ class TestFeatures(unittest.TestCase):
         )
 
 
+    def test_cve_in_commit_message_no_cve(self):
+        """
+        An advisory without a CVE alias must not match any commit message
+        """
+        message = "Fix for CVE-2020-1000 in the parser"
+
+        self.assertFalse(static_features.cve_in_commit_message(message, None))
+        self.assertFalse(static_features.cve_in_commit_message(message, ""))
+
+        # a given CVE is still matched, ignoring case
+        self.assertTrue(static_features.cve_in_commit_message(message, "cve-2020-1000"))
+        self.assertFalse(static_features.cve_in_commit_message(message, "CVE-1999-1"))
+
+
     @unittest.skip("Skipping for now")
     def test_semantic_similarity(self):
         """
