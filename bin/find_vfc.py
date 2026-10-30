@@ -51,6 +51,20 @@ def main():
         required=False,
     )
 
+    parser.add_argument(
+        "--repo_owner",
+        type=str,
+        help="GitHub repo owner (default: taken from the advisory's PACKAGE reference)",
+        required=False,
+    )
+
+    parser.add_argument(
+        "--repo_name",
+        type=str,
+        help="GitHub repo name (default: taken from the advisory's PACKAGE reference)",
+        required=False,
+    )
+
     args = parser.parse_args()
 
     if not args.advisory_path and not args.clone_path:
@@ -67,6 +81,8 @@ def main():
         output_path=args.output_path,
         log_path=args.log_path,
         fixed_version=args.fixed_version,
+        repo_owner=args.repo_owner,
+        repo_name=args.repo_name,
     )
 
 

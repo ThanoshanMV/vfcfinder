@@ -28,6 +28,8 @@ def rank(
     output_path=None,
     log_path=None,
     fixed_version=None,
+    repo_owner=None,
+    repo_name=None,
 ):
     """Ranks commits in relevance to a given security advisory
 
@@ -40,6 +42,9 @@ def rank(
             ranked commits, errors). No log file is written when None
         fixed_version (str): Fixed version to process, for example "1.8.4".
             Defaults to the last fixed version listed in the advisory
+        repo_owner (str): GitHub repository owner, for example "axios"
+        repo_name (str): GitHub repository name, for example "axios".
+            Both default to the advisory's PACKAGE reference URL when not given
     """
     formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
 
@@ -58,7 +63,13 @@ def rank(
     logger.info("START advisory_path=%s clone_path=%s", advisory_path, clone_path)
     try:
         return _rank(
-            advisory_path, clone_path, return_results, output_path, fixed_version
+            advisory_path,
+            clone_path,
+            return_results,
+            output_path,
+            fixed_version,
+            repo_owner,
+            repo_name,
         )
     except Exception:
         logger.exception("FAILED advisory_path=%s", advisory_path)
@@ -73,7 +84,13 @@ def rank(
 
 
 def _rank(
-    advisory_path: str, clone_path: str, return_results, output_path, fixed_version
+    advisory_path: str,
+    clone_path: str,
+    return_results,
+    output_path,
+    fixed_version,
+    repo_owner=None,
+    repo_name=None,
 ):
     # SET args
     GHSA_ID = advisory_path
@@ -98,12 +115,14 @@ def _rank(
     # create a dataframe that's easier to handle
     parsed_df = parsed[1].copy()
 
-    # identify the repo_url
-    repo_url = parsed[0]["reference_url"][parsed[0]["reference_type"].index("PACKAGE")]
-
-    # extract the base repo owner/name
-    repo_owner = repo_url.split("/")[-2]
-    repo_name = repo_url.split("/")[-1]
+    # the repo owner/name come from the caller (e.g. the annotation dataset),
+    # otherwise they are extracted from the advisory's PACKAGE reference URL
+    if repo_owner is None or repo_name is None:
+        repo_url = parsed[0]["reference_url"][
+            parsed[0]["reference_type"].index("PACKAGE")
+        ]
+        repo_owner = repo_url.split("/")[-2]
+        repo_name = repo_url.split("/")[-1]
 
     logger.info(
         "ADVISORY id=%s aliases=%s package=%s/%s cwe_ids=%s repo=%s/%s",

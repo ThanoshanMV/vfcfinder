@@ -1,10 +1,12 @@
 """
 Batch runner: runs VFCFinder on the advisories listed in an annotation file
-Each annotation entry gives a GHSA ID and the fixed version to process, the
-advisory JSON is looked up by GHSA ID in the advisory directory.
+Each annotation entry gives a GHSA ID, the fixed version to process and the
+GitHub repo owner/name to clone, the advisory JSON is looked up by GHSA ID in
+the advisory directory.
 
 Per advisory outputs (under --output_dir):
-    logs/<ghsa>.log, logs/<ghsa>.console.txt, results/ranked_<ghsa>.csv
+    logs/<ghsa>_<fixed_version>.log, logs/<ghsa>_<fixed_version>.console.txt,
+    results/ranked_<ghsa>_<fixed_version>.csv
 The CSV is the one VFCFinder writes itself.
 """
 import argparse
@@ -40,15 +42,21 @@ class Tee:
         return False
 
 
+def output_name(entry):
+    """Name stem for an entry's outputs, a GHSA can be listed for several fixed versions"""
+    return f"{entry['ghsa_id']}_{entry['fixed_version']}".replace("/", "_")
+
+
 def run_one(entry, advisory_dir, clone_path, output_dir):
     """Runs VFCFinder for one annotation entry, returns (status, error)"""
     ghsa_id = entry["ghsa_id"]
     fixed_version = entry["fixed_version"]
 
     advisory_path = advisory_dir / f"{ghsa_id}.json"
-    log_path = output_dir / "logs" / f"{ghsa_id}.log"
-    console_path = output_dir / "logs" / f"{ghsa_id}.console.txt"
-    csv_path = output_dir / "results" / f"ranked_{ghsa_id}.csv"
+    name = output_name(entry)
+    log_path = output_dir / "logs" / f"{name}.log"
+    console_path = output_dir / "logs" / f"{name}.console.txt"
+    csv_path = output_dir / "results" / f"ranked_{name}.csv"
 
     if not advisory_path.exists():
         return "missing_advisory", f"{advisory_path} not found"
@@ -63,6 +71,8 @@ def run_one(entry, advisory_dir, clone_path, output_dir):
                 output_path=str(csv_path),
                 log_path=str(log_path),
                 fixed_version=fixed_version,
+                repo_owner=entry.get("repo_owner"),
+                repo_name=entry.get("repo_name"),
             )
             return "ok", None
         except Exception as e:
@@ -82,7 +92,7 @@ def main():
         "--annotation",
         type=Path,
         default=REPO_ROOT / "tests/data/sample/ghsa_annotation_sample.json",
-        help="JSON list of {ghsa_id, fixed_version, ...}",
+        help="JSON list of {ghsa_id, fixed_version, repo_owner, repo_name, ...}",
     )
     parser.add_argument(
         "--advisory_dir",
@@ -140,13 +150,13 @@ def main():
             f"\n===== [{i}/{len(entries)}] {ghsa_id} "
             f"fixed_version={entry['fixed_version']} ====="
         )
-        csv_path = args.output_dir / "results" / f"ranked_{ghsa_id}.csv"
+        csv_path = args.output_dir / "results" / f"ranked_{output_name(entry)}.csv"
         if args.skip_done and csv_path.exists():
             print("Result exists, skipping")
-            outcomes.append((ghsa_id, "skipped_done", None))
+            outcomes.append((output_name(entry), "skipped_done", None))
         else:
             status, error = run_one(entry, advisory_dir, clone_path, args.output_dir)
-            outcomes.append((ghsa_id, status, error))
+            outcomes.append((output_name(entry), status, error))
 
     print(f"\n===== Done: {len(outcomes)} advisories =====")
     for status in sorted({o[1] for o in outcomes}):
