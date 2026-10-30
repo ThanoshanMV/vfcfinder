@@ -140,5 +140,145 @@
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "7e9b9cf4d7be02428e963fc729496a45baeea608",
     "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-8847-338w-5hcj",
+    "fixed_version": "2.6.4",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-wv67-q8rr-grjp",
+    "fixed_version": "3.4.0",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-h6gj-6jjq-h8g9",
+    "fixed_version": "1.13.2",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "8cc5bae1caa1fcf96bf5862c5646c787020ba3f9",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-8vg2-wf3q-mwv7",
+    "fixed_version": "9.23.3",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "349536303983ccba68ecb3e4fb35315424011afc",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-jjpj-p2wh-qf23",
+    "fixed_version": "2.10.1",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-9pv7-vfvm-6vr7",
+    "fixed_version": "16.8.1",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "8f4c64eb6a7112a929ffeef00caa67529b3f2fcf",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-23q2-5gf8-gjpp",
+    "fixed_version": "1.23.12",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "7a9e2f5de69aa0bb884ead25d1dcc833bb8c6579",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-776f-qx25-q3cc",
+    "fixed_version": "0.5.0",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "581b19a62d88f8a3c068b5a45f4542c2d6a495a5",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-wpqr-6v78-jr5g",
+    "fixed_version": "0.39.1",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-f794-r6xc-hf3v",
+    "fixed_version": "1.6.1",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "8e3bcdff145a2219033bd782fc517229fe3e05ea",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-v4v2-8h88-65qj",
+    "fixed_version": "1.23.7",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "f28dccf4e11f041564293e4f407e69ab9ee2277f",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-6rw7-vpxm-498p",
+    "fixed_version": "6.14.1",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "3086902ecf7f088d0d1803887643ac6c03d415b9",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-wqfc-cr59-h64p",
+    "fixed_version": "1.17.3",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-f3fg-mf2q-fj3f",
+    "fixed_version": "4.6.1",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "12a62ca596db3b0827b39a4b865b882423e7cb1e",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-x288-3778-4hhx",
+    "fixed_version": "21.1.5",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-wf5p-g6vw-rhxx",
+    "fixed_version": "0.28.0",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "2755df562b9c194fba6d8b609a383443f6a6e967",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-fx6j-w5w5-h468",
+    "fixed_version": "4.4.6",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
+  },
+  {
+    "ghsa_id": "GHSA-4hjh-wcwx-xvwj",
+    "fixed_version": "1.12.0",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "945435fc51467303768202250debb8d4ae892593",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-fhjf-83wg-r2j9",
+    "fixed_version": "1.3.2",
+    "IsVulnerabilityFixingCommitExist": "1",
+    "VFCCommitSHA": "90ee1fab375fccfd9b926df718243339b4976d50",
+    "Reasoning": "Available in GHSA under references section."
+  },
+  {
+    "ghsa_id": "GHSA-f7xj-rg7h-mc87",
+    "fixed_version": "15.10.1",
+    "IsVulnerabilityFixingCommitExist": "0",
+    "VFCCommitSHA": "",
+    "Reasoning": "Not available in GHSA, and NVD."
   }
 ]
