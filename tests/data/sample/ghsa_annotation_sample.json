@@ -2,6 +2,8 @@
   {
     "ghsa_id": "GHSA-xph3-r2jf-4vp3",
     "fixed_version": "3.1.4",
+    "repo_owner": "haraka",
+    "repo_name": "Haraka",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -9,6 +11,8 @@
   {
     "ghsa_id": "GHSA-4w46-w44m-3jq3",
     "fixed_version": "4.5.0",
+    "repo_owner": "parse-community",
+    "repo_name": "parse-server",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "da905a357d062ab4fea727a21eac231acc2ed92a",
     "Reasoning": "Available in GHSA under references section."
@@ -16,6 +20,8 @@
   {
     "ghsa_id": "GHSA-2phv-j68v-wwqx",
     "fixed_version": "10.27.0",
+    "repo_owner": "pnpm",
+    "repo_name": "pnpm",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -23,6 +29,8 @@
   {
     "ghsa_id": "GHSA-9pp3-53p2-ww9v",
     "fixed_version": "3.6.2",
+    "repo_owner": "vendurehq",
+    "repo_name": "vendure",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -30,6 +38,8 @@
   {
     "ghsa_id": "GHSA-99h5-pjcv-gr6v",
     "fixed_version": "1.3.26",
+    "repo_owner": "better-auth",
+    "repo_name": "better-auth",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "556085067609c508f8c546ceef9003ee8c607d39",
     "Reasoning": "Available in GHSA under references section."
@@ -37,6 +47,8 @@
   {
     "ghsa_id": "GHSA-8xwg-wv7v-4vqp",
     "fixed_version": "1.8.4",
+    "repo_owner": "electron",
+    "repo_name": "electron",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "No VFC for 1.8.4 version release. VFC exists for backported 1.7V. PRs exist for 1.7V, 2V, 3V. Nothing for 1.8V in advisory. It exists in release notes - the PR. (https://github.com/electron/electron/compare/v1.8.3...v1.8.4)"
@@ -44,6 +56,8 @@
   {
     "ghsa_id": "GHSA-5xf4-f2fq-f69j",
     "fixed_version": "1.22.0",
+    "repo_owner": "yarnpkg",
+    "repo_name": "yarn",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "039bafd74b7b1a88a53a54f8fa6fa872615e90e7",
     "Reasoning": "Available in GHSA under references section."
@@ -51,6 +65,8 @@
   {
     "ghsa_id": "GHSA-4vq7-882g-wcg4",
     "fixed_version": "5.23.0",
+    "repo_owner": "vega",
+    "repo_name": "vega",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -58,6 +74,8 @@
   {
     "ghsa_id": "GHSA-v273-448j-v4qj",
     "fixed_version": "10.25.5",
+    "repo_owner": "harttle",
+    "repo_name": "liquidjs",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "f41c1fc02fe901598f3328118b42b13bc6bc9b04",
     "Reasoning": "Available in GHSA under references section."
@@ -65,6 +83,8 @@
   {
     "ghsa_id": "GHSA-49x3-8228-3w3m",
     "fixed_version": "3.12.0",
+    "repo_owner": "coder",
+    "repo_name": "code-server",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "ca617df135e78833f93c8320cb2d2cf8bba809f5",
     "Reasoning": "Available in GHSA under references section."
@@ -72,6 +92,8 @@
   {
     "ghsa_id": "GHSA-w87r-vg9q-crqm",
     "fixed_version": "8.8.5",
+    "repo_owner": "google",
+    "repo_name": "zx",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "9ef6d3c9962c4ba01e3fb8075855570c192b4681",
     "VFCCommitSHA2": "a4d1bc2467f305f1c91d62506e215f307dc1fbeb",
@@ -80,6 +102,8 @@
   {
     "ghsa_id": "GHSA-hgxv-3497-3hhj",
     "fixed_version": "7.2.0",
+    "repo_owner": "fastify",
+    "repo_name": "fastify-oauth2",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -87,6 +111,8 @@
   {
     "ghsa_id": "GHSA-2qgm-m29m-cj2h",
     "fixed_version": "1.23.16",
+    "repo_owner": "louislam",
+    "repo_name": "uptime-kuma",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "6cfae01a0d3727c517afe512fc8fec1d99acf875",
     "Reasoning": "Available in GHSA under references section."
@@ -94,6 +120,8 @@
   {
     "ghsa_id": "GHSA-2q7r-29rg-6m5h",
     "fixed_version": "12.5.0",
+    "repo_owner": "fastify",
+    "repo_name": "fastify-reply-from",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "4d9795cd5b57a36756d37b7f036eae369f69fa66",
     "Reasoning": "Available in GHSA under references section."
@@ -101,6 +129,8 @@
   {
     "ghsa_id": "GHSA-4hjh-wcwx-xvwj",
     "fixed_version": "0.30.2",
+    "repo_owner": "axios",
+    "repo_name": "axios",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "a1b1d3f073a988601583a604f5f9f5d05a3d0b67",
     "Reasoning": "Available in GHSA under references section. Other backported versions' VFC exist too."
@@ -108,6 +138,8 @@
   {
     "ghsa_id": "GHSA-8vch-m3f4-q8jf",
     "fixed_version": "1.4.17",
+    "repo_owner": "elysiajs",
+    "repo_name": "elysia",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "26935bf76ebc43b4a43d48b173fc853de43bb51e",
     "VFCCommitSHA2": "3af978663e437dccc6c1a2a3aff4b74e1574849e",
@@ -116,6 +148,8 @@
   {
     "ghsa_id": "GHSA-93f3-23rq-pjfp",
     "fixed_version": "6.14.6",
+    "repo_owner": "npm",
+    "repo_name": "cli",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "a9857b8f6869451ff058789c4631fadfde5bbcbc",
     "Reasoning": "Available in GHSA under references section."
@@ -123,6 +157,8 @@
   {
     "ghsa_id": "GHSA-pr96-94w5-mx2h",
     "fixed_version": "9.1.1",
+    "repo_owner": "fastify",
+    "repo_name": "fastify-static",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -130,6 +166,8 @@
   {
     "ghsa_id": "GHSA-wmjr-v86c-m9jj",
     "fixed_version": "1.4.0",
+    "repo_owner": "better-auth",
+    "repo_name": "better-auth",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "cfc453a2a6eb02951f9a0a7c944064936e73eee8",
     "Reasoning": "Available in GHSA under references section."
@@ -137,6 +175,8 @@
   {
     "ghsa_id": "GHSA-v923-w3x8-wh69",
     "fixed_version": "0.6.0",
+    "repo_owner": "jaredhanson",
+    "repo_name": "passport",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "7e9b9cf4d7be02428e963fc729496a45baeea608",
     "Reasoning": "Available in GHSA under references section."
@@ -144,6 +184,8 @@
   {
     "ghsa_id": "GHSA-8847-338w-5hcj",
     "fixed_version": "2.6.4",
+    "repo_owner": "i18next",
+    "repo_name": "i18next-fs-backend",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -151,6 +193,8 @@
   {
     "ghsa_id": "GHSA-wv67-q8rr-grjp",
     "fixed_version": "3.4.0",
+    "repo_owner": "jquery",
+    "repo_name": "jquery",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -158,6 +202,8 @@
   {
     "ghsa_id": "GHSA-h6gj-6jjq-h8g9",
     "fixed_version": "1.13.2",
+    "repo_owner": "jquery",
+    "repo_name": "jquery-ui",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "8cc5bae1caa1fcf96bf5862c5646c787020ba3f9",
     "Reasoning": "Available in GHSA under references section."
@@ -165,6 +211,8 @@
   {
     "ghsa_id": "GHSA-8vg2-wf3q-mwv7",
     "fixed_version": "9.23.3",
+    "repo_owner": "directus",
+    "repo_name": "directus",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "349536303983ccba68ecb3e4fb35315424011afc",
     "Reasoning": "Available in GHSA under references section."
@@ -172,6 +220,8 @@
   {
     "ghsa_id": "GHSA-jjpj-p2wh-qf23",
     "fixed_version": "2.10.1",
+    "repo_owner": "n8n-io",
+    "repo_name": "n8n",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -179,6 +229,8 @@
   {
     "ghsa_id": "GHSA-9pv7-vfvm-6vr7",
     "fixed_version": "16.8.1",
+    "repo_owner": "graphql",
+    "repo_name": "graphql-js",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "8f4c64eb6a7112a929ffeef00caa67529b3f2fcf",
     "Reasoning": "Available in GHSA under references section."
@@ -186,6 +238,8 @@
   {
     "ghsa_id": "GHSA-23q2-5gf8-gjpp",
     "fixed_version": "1.23.12",
+    "repo_owner": "louislam",
+    "repo_name": "uptime-kuma",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "7a9e2f5de69aa0bb884ead25d1dcc833bb8c6579",
     "Reasoning": "Available in GHSA under references section."
@@ -193,6 +247,8 @@
   {
     "ghsa_id": "GHSA-776f-qx25-q3cc",
     "fixed_version": "0.5.0",
+    "repo_owner": "Leonidas-from-XIV",
+    "repo_name": "node-xml2js",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "581b19a62d88f8a3c068b5a45f4542c2d6a495a5",
     "Reasoning": "Available in GHSA under references section."
@@ -200,6 +256,8 @@
   {
     "ghsa_id": "GHSA-wpqr-6v78-jr5g",
     "fixed_version": "0.39.1",
+    "repo_owner": "google-gemini",
+    "repo_name": "gemini-cli",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -207,6 +265,8 @@
   {
     "ghsa_id": "GHSA-f794-r6xc-hf3v",
     "fixed_version": "1.6.1",
+    "repo_owner": "jaredhanson",
+    "repo_name": "passport-oauth2",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "8e3bcdff145a2219033bd782fc517229fe3e05ea",
     "Reasoning": "Available in GHSA under references section."
@@ -214,6 +274,8 @@
   {
     "ghsa_id": "GHSA-v4v2-8h88-65qj",
     "fixed_version": "1.23.7",
+    "repo_owner": "louislam",
+    "repo_name": "uptime-kuma",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "f28dccf4e11f041564293e4f407e69ab9ee2277f",
     "Reasoning": "Available in GHSA under references section."
@@ -221,6 +283,8 @@
   {
     "ghsa_id": "GHSA-6rw7-vpxm-498p",
     "fixed_version": "6.14.1",
+    "repo_owner": "ljharb",
+    "repo_name": "qs",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "3086902ecf7f088d0d1803887643ac6c03d415b9",
     "Reasoning": "Available in GHSA under references section."
@@ -228,6 +292,8 @@
   {
     "ghsa_id": "GHSA-wqfc-cr59-h64p",
     "fixed_version": "1.17.3",
+    "repo_owner": "yarnpkg",
+    "repo_name": "yarn",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -235,6 +301,8 @@
   {
     "ghsa_id": "GHSA-f3fg-mf2q-fj3f",
     "fixed_version": "4.6.1",
+    "repo_owner": "auth0",
+    "repo_name": "nextjs-auth0",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "12a62ca596db3b0827b39a4b865b882423e7cb1e",
     "Reasoning": "Available in GHSA under references section."
@@ -242,6 +310,8 @@
   {
     "ghsa_id": "GHSA-x288-3778-4hhx",
     "fixed_version": "21.1.5",
+    "repo_owner": "angular",
+    "repo_name": "angular-cli",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -249,6 +319,8 @@
   {
     "ghsa_id": "GHSA-wf5p-g6vw-rhxx",
     "fixed_version": "0.28.0",
+    "repo_owner": "axios",
+    "repo_name": "axios",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "2755df562b9c194fba6d8b609a383443f6a6e967",
     "Reasoning": "Available in GHSA under references section."
@@ -256,6 +328,8 @@
   {
     "ghsa_id": "GHSA-fx6j-w5w5-h468",
     "fixed_version": "4.4.6",
+    "repo_owner": "nuxt",
+    "repo_name": "nuxt",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
@@ -263,6 +337,8 @@
   {
     "ghsa_id": "GHSA-4hjh-wcwx-xvwj",
     "fixed_version": "1.12.0",
+    "repo_owner": "axios",
+    "repo_name": "axios",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "945435fc51467303768202250debb8d4ae892593",
     "Reasoning": "Available in GHSA under references section."
@@ -270,6 +346,8 @@
   {
     "ghsa_id": "GHSA-fhjf-83wg-r2j9",
     "fixed_version": "1.3.2",
+    "repo_owner": "jonschlinkert",
+    "repo_name": "mixin-deep",
     "IsVulnerabilityFixingCommitExist": "1",
     "VFCCommitSHA": "90ee1fab375fccfd9b926df718243339b4976d50",
     "Reasoning": "Available in GHSA under references section."
@@ -277,6 +355,8 @@
   {
     "ghsa_id": "GHSA-f7xj-rg7h-mc87",
     "fixed_version": "15.10.1",
+    "repo_owner": "stylelint",
+    "repo_name": "stylelint",
     "IsVulnerabilityFixingCommitExist": "0",
     "VFCCommitSHA": "",
     "Reasoning": "Not available in GHSA, and NVD."
