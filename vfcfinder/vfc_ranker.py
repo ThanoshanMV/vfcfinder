@@ -222,17 +222,32 @@ def _rank(
     # generate features
     # patchparser for each commit
     commits_diff = pd.DataFrame()
+    skipped_commits = 0
 
     # get the diff of each commit
     for idx, row in commits.iterrows():
         print(f"Obtaining diff for commit {idx+1}/{len(commits)} || {row['sha'][:7]}")
-        temp_diff = git_helper.git_diff(
-            clone_path=CLONE_PATH,
-            commit_sha=row["sha"],
-        )
+        try:
+            temp_diff = git_helper.git_diff(
+                clone_path=CLONE_PATH,
+                commit_sha=row["sha"],
+            )
+        except Exception as e:
+            # patchparser can fail on some diffs (e.g. minified dist files), the
+            # commit is left out of the diff data and keeps vfc_prob=0 below
+            logger.warning(
+                "SKIPPED_COMMIT sha=%s reason=%s: %s", row["sha"], type(e).__name__, e
+            )
+            skipped_commits += 1
+            continue
         temp_diff_df = pd.DataFrame(temp_diff)
 
         commits_diff = pd.concat([commits_diff, temp_diff_df])
+
+    if commits_diff.empty:
+        raise RuntimeError(
+            f"No commit diff could be parsed ({skipped_commits} skipped)"
+        )
 
     #####################################################################################
     # vfc_identification
