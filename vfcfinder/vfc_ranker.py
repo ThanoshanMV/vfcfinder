@@ -470,7 +470,12 @@ def _rank(
 
     # save results
     if output_path is not None:
-        commits.to_csv(output_path, encoding='utf-8', index=False)
+        # commit messages can contain bare "\r", which to_csv leaves unquoted and
+        # readers then treat as a row break, splitting one record into two
+        to_save = commits.copy()
+        for col in to_save.select_dtypes(include="object").columns:
+            to_save[col] = to_save[col].str.replace("\r", " ", regex=False)
+        to_save.to_csv(output_path, encoding='utf-8', index=False)
         logger.info("OUTPUT csv=%s", output_path)
 
     # return results for later use
